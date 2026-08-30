@@ -1,139 +1,145 @@
-<img width="2560" height="1440" alt="IMG-20260823-WA0015" src="https://github.com/user-attachments/assets/efd07a05-3f93-48d1-b278-52713389fd07" />
+# 🌸 Jasna TM's Pookalam 2026
 
+## 👩‍💻 Student Details
 
-# 🌸𝓒𝓸𝓭𝓮 ~ 𝓐 ~ 𝓟𝓸𝓸𝓴𝓪𝓵𝓪𝓶🌸
-### *Welcome to 𝓒𝓸𝓭𝓮 ~ 𝓐 ~ 𝓟𝓸𝓸𝓴𝓪𝓵𝓪𝓶, a creative coding challenge where tradition meets technology! 🌼*
+**Name:** Jasna TM  
+**Branch:** Computer Science  
+**Semester:** First Semester  
+**Phone Number:** 7909176091
 
----
-
-## 🎨 About the Challenge
-
-Welcome to **Code-A-Pookalam 2026** - a fun coding challenge organized by TinkerHub LBSITW! 
-
-Pookalam is a traditional floral carpet made during the festival of Onam in Kerala. In this challenge, we're bringing this beautiful tradition into the digital world! Use your creativity and coding skills to create stunning digital Pookalams using any programming language of your choice.
-
-Whether you're a beginner taking your first steps into programming or an experienced developer looking for a creative outlet, this challenge is for everyone! 🚀
+**Programming Language:** JavaScript  
+**Technologies Used:** HTML, CSS, SVG  
+**Code Editor:** Visual Studio Code (VS Code)
 
 ---
 
-## 🚀 How to Participate
+## 🌼 About the Project
 
-Follow these simple steps to join the challenge:
+This project is a digital Pookalam inspired by the traditional floral decorations of Kerala.
 
-### 1️⃣ Fork this Repository
-Click the **Fork** button at the top right of this repository to create your own copy.
+The Pookalam is created using code and consists of multiple concentric circular layers, colourful flower patterns, geometric shapes, and rotational symmetry.
 
-### 2️⃣ Clone Your Fork
-```bash
-git clone https://github.com/[YOUR-USERNAME]/Code-A-Pookalam.git.git
-```
-
-### 3️⃣ Edit This README
-Replace this template README with your own submission details using the format provided below.
-
-### 4️⃣ Add Your Code
-Create your Pookalam using any programming language! Popular choices include:
-- 🐍 Python (with turtle, matplotlib, pygame)
-- 🌐 HTML/CSS/JavaScript
-- ☕ Java
-- 🎯 Processing
-- 🦀 Rust
-- And many more!
-
-### 5️⃣ Commit and Push to Your Fork
-```bash
-git add .
-git commit -m "My Code-A-Pookalam 2026 submission"
-git push origin main
-```
-
-### 6️⃣ Submit Your Repository
-Share your forked repository link with the organizers by **August 31, 2026**!
+JavaScript is used to generate and arrange repeated SVG elements around the centre of the Pookalam, creating a balanced and symmetrical design.
 
 ---
 
-## 📋 Rules
+## 🎨 Pookalam Design
 
-1. **🍴 Fork Required**: You must fork this repository to participate
-2. **✏️ Edit README**: Replace this README with your submission details
-3. **💻 Any Language**: Use any programming language you're comfortable with
-4. **🎨 Be Creative**: Let your imagination run wild with colors, patterns, and designs
-5. **⏰ Deadline**: Submit your repository link by **August 31 2026, 11:59 PM IST**
-6. **🤝 Be Respectful**: Keep your code clean and family-friendly
-7. **📸 Include Output**: Add screenshots or images of your Pookalam
-8. **✅ Original Work**: Submit only your original code
+The Pookalam consists of several decorative layers:
+
+- 🌸 A detailed multi-layered flower at the centre
+- 🌼 Repeated petal patterns around the centre
+- 🟡 Yellow and orange petal rings
+- 🔺 An outer zig-zag triangular pattern
+- ⚪ Cream-coloured geometric elements
+- 🔴 Dark red and brown circular layers
+- 🔄 Rotationally repeated patterns for symmetry
 
 ---
 
-## 📝 README Template for Your Submission
+## ✨ Features
 
-**Once you fork this repository, replace this entire README.md with the following format:**
+- Circular and symmetrical Pookalam design
+- Multiple concentric layers
+- Repeated floral and geometric patterns
+- Rotational symmetry
+- SVG-based shapes and paths
+- JavaScript-generated patterns
+- Traditional Kerala-inspired colour palette
+- Scalable vector-based design
+- Dark background for visual contrast
 
-```markdown
-# 🌸 [Your Name]'s Pookalam 2026 🌸
+---
 
-## 👨‍💻 About Me
-- **Name:** [Your Full Name]
-- **Branch:** [Your Branch]
-- **Semester:** [Your Semester]
-- **Contact Number:** [Your Contact Number]
-- **Programming Language Used:** [Language]
+## 🛠️ Technologies Used
 
-## 🎨 My Pookalam
+### HTML
+Used to create the basic structure of the webpage.
 
-### Description
-[Write a brief description of your Pookalam design, inspiration, or the approach you took]
+### CSS
+Used to control the page layout, background, positioning, and size of the Pookalam.
 
-### Preview
-![My Pookalam](output/pookalam-preview.png)
-*Add more images if you have multiple views or animations*
+### JavaScript
+Used to generate repeated patterns, calculate angles, and arrange the different elements around the centre.
 
-### Features
-- [Feature 1 - e.g., "Colorful geometric patterns"]
-- [Feature 2 - e.g., "Interactive elements"]
+### SVG
+Used to create circles, paths, petals, triangles, and other geometric elements of the Pookalam.
 
-## 🚀 How to Run
+---
 
-### Prerequisites
-[List any requirements, libraries, or software needed]
-```bash
-# Example for Python
-pip install matplotlib turtle numpy
-```
+## ▶️ Running the Code
 
-### Running the Code
-```bash
-# Add your specific run commands here
-python pookalam.py
-# or
-open index.html
-# or your specific instructions
-```
+### Requirements
+
+- A computer
+- Visual Studio Code (VS Code)
+- A modern web browser such as Google Chrome, Microsoft Edge, or Firefox
+
+### Steps
+
+1. Open the project folder in Visual Studio Code.
+2. Open the `pookalam.html` file.
+3. Save the file.
+4. Open `pookalam.html` in a web browser.
+5. The digital Pookalam will be displayed.
+
+### Using Live Server
+
+You can also use the Live Server extension in VS Code:
+
+1. Open `pookalam.html`
+2. Right-click inside the file.
+3. Select **Open with Live Server**.
+4. The Pookalam will open in your browser.
+
+---
+## 🌸 Design Concept
+
+The design is based on the idea of combining traditional Pookalam patterns with programming.
+
+Repeated elements are placed around a central point using calculated angles. This creates rotational symmetry and allows complex floral and geometric patterns to be generated using JavaScript and SVG.
+
+---
+
+## 🎯 Project Objective
+
+The main objective of this project is to digitally recreate a traditional Kerala Pookalam using programming concepts.
+
+This project demonstrates how coding can be used to create artistic designs through:
+
+- Mathematical calculations
+- Geometric shapes
+- Loops
+- Functions
+- SVG graphics
+- Rotational symmetry
+
+---
+
+## 📸 Preview
+
+`pookalam.png`
+
+---
+
+## 🌺 Conclusion
+
+This project combines Kerala's traditional Pookalam art with modern web technologies.
+
+By using HTML, CSS, JavaScript, and SVG, a detailed and symmetrical Pookalam can be created digitally using code.
+
+---
+
+
+**Jasna TM**  
+Computer Science – First Semester
 
 ## 📁 File Structure
-```
+
+```text
 Code-A-Pookalam/
-├── README.md (this file)
-├── pookalam.py (or your main file)
-└── requirements.txt (if applicable)
-```
 
-##  Happy Onam!✨
-*Submitted for Code-A-Pookalam 2026 by TinkerHub LBSITW*
-```
 
----
-
-## 💡 Tips for Participants
-
-- **Get Creative**: Think beyond traditional Pookalam patterns - add animations, interactivity, or 3D effects!
-- **Document Well**: A good README makes your submission stand out
-- **Include Visuals**: Screenshots, GIFs, or videos make your work more engaging
-- **Share Your Process**: Explain your approach and what you learned
-- **Test Your Code**: Make sure others can run your code with clear instructions
-
----
-
-## Happy Coding & Happy Onam!✨
-*May your code bloom as beautifully as a traditional Pookalam!*
-Made with ❤️ at TinkerHub LBSITW
+└──pookalam.html
+└── pookalam.png
+└── README.md

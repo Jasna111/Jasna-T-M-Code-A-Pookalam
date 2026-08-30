@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mandala Art</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  svg {
+    width: 90vmin;
+    height: 90vmin;
+  }
+</style>
+</head>
+<body>
+<svg id="mandala" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bladeGrad" x1="0.5" y1="1" x2="0.5" y2="0">
+      <stop offset="0%"  stop-color="#b5231f"/>
+      <stop offset="30%" stop-color="#f0771f"/>
+      <stop offset="55%" stop-color="#f7a91f"/>
+      <stop offset="80%" stop-color="#ffd23a"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<script>
+(function () {
+  "use strict";
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.getElementById("mandala");
+  const cx = 400, cy = 400;
+
+  function el(tag, attrs) {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  function polar(r, thetaDeg) {
+    const t = (thetaDeg * Math.PI) / 180;
+    return [cx + r * Math.sin(t), cy - r * Math.cos(t)];
+  }
+
+  /* ---------- Base ---------- */
+  svg.appendChild(el("circle", { cx, cy, r: 396, fill: "#e8531e" }));
+
+  /* ---------- Reusable ring helpers (guarantee every piece in a ring
+     is generated from the same formula, so sizes always match) ---------- */
+  function triangleRing(count, rTip, rBase, gapFactor, colorFn) {
+    const step = 360 / count;
+    const half = (step / 2) * gapFactor;
+    for (let i = 0; i < count; i++) {
+      const theta = i * step;
+      const tip = polar(rTip, theta);
+      const left = polar(rBase, theta - half);
+      const right = polar(rBase, theta + half);
+      const pts = [tip, left, right].map((p) => p.join(",")).join(" ");
+      svg.appendChild(el("polygon", { points: pts, fill: colorFn(i) }));
+    }
+  }
+
+  function petalRing(count, rTip, rBase, bulgeR, gapFactor, fill, stroke) {
+    const step = 360 / count;
+    const half = (step / 2) * gapFactor;
+    for (let i = 0; i < count; i++) {
+      const theta = i * step;
+      const tip = polar(rTip, theta);
+      const left = polar(rBase, theta - half);
+      const right = polar(rBase, theta + half);
+      const midOut = polar(bulgeR, theta);
+      const d = `M${left.join(",")} Q${midOut.join(",")} ${right.join(",")} L${tip.join(",")} Z`;
+      svg.appendChild(el("path", { d, fill, stroke, "stroke-width": "1" }));
+    }
+  }
+
+  /* ---------- Outer zig-zag triangle ring (made thinner / smaller) ---------- */
+  triangleRing(36, 393, 368, 0.82, (i) => (i % 2 === 0 ? "#ffd23a" : "#f4801f"));
+
+  /* ---------- Extra petal ring (new layer, fills the space freed up
+     by shrinking the yellow triangles) ---------- */
+  svg.appendChild(el("circle", { cx, cy, r: 368, fill: "#6e1414" }));
+  petalRing(36, 344, 366, 371, 0.78, "#fff6dc", "#c0392b");
+
+  /* ---------- Cream petal crown (more petals, still perfectly uniform) ---------- */
+  svg.appendChild(el("circle", { cx, cy, r: 346, fill: "#6e1414" }));
+  petalRing(32, 292, 344, 349, 0.8, "#fdf0c8", "#c0392b");
+
+  /* ---------- Main pinwheel ring ---------- */
+  svg.appendChild(el("circle", { cx, cy, r: 293, fill: "#4a0e0e" }));
+
+  const bladeD =
+    "M384.7,291.1 Q323.9,236.9 328.8,134.4 " +
+    "Q469.9,139.2 509,244.4 " +
+    "Q431.1,284.1 384.7,291.1 Z";
+
+  for (let i = 0; i < 8; i++) {
+    const g = el("g", { transform: `rotate(${i * 45} ${cx} ${cy})` });
+    g.appendChild(
+      el("path", {
+        d: bladeD,
+        fill: "url(#bladeGrad)",
+        stroke: "#3a0d0d",
+        "stroke-width": "2",
+      })
+    );
+    svg.appendChild(g);
+  }
+
+  /* ---------- Small flowers between blades ----------
+     New design: 8 pointed lotus-style petals per flower (instead of
+     round ellipses), all drawn from the same path + rotation, plus a
+     matching backdrop disc so contrast never changes flower-to-flower. */
+  const petalShape = "M0,-3 C-5,-6 -6,-12 0,-17 C6,-12 5,-6 0,-3 Z";
+
+  function makeFlower(x, y) {
+    const g = el("g", { transform: `translate(${x},${y})` });
+    // uniform backdrop so contrast with the blade colors never changes
+    g.appendChild(el("circle", { cx: 0, cy: 0, r: 19, fill: "#4a0e0e" }));
+    for (let k = 0; k < 8; k++) {
+      g.appendChild(
+        el("path", {
+          d: petalShape,
+          fill: "#ffd23a",
+          stroke: "#c0392b",
+          "stroke-width": "0.7",
+          transform: `rotate(${k * 45})`,
+        })
+      );
+    }
+    g.appendChild(el("circle", { cx: 0, cy: 0, r: 6.5, fill: "#f0771f" }));
+    g.appendChild(el("circle", { cx: 0, cy: 0, r: 3, fill: "#7a1f1f" }));
+    return g;
+  }
+
+  for (let i = 0; i < 8; i++) {
+    const theta = 22.5 + i * 45;
+    const [x, y] = polar(228, theta);
+    svg.appendChild(makeFlower(x, y));
+  }
+
+  /* ---------- Center disc ---------- */
+  svg.appendChild(el("circle", { cx, cy, r: 158, fill: "#2a1608" }));
+
+  /* ---------- Center lotus flower ----------
+     Rounded petals (not sharp star points), built in layers that
+     interlock by alternating each layer's rotation by half a step —
+     the classic lotus look — from deep red outside to white/pink
+     near the center, with a stamen ring and center bud on top. */
+  function lotusPetal(tipR, baseR, halfAngle) {
+    const left = polar(baseR, -halfAngle);
+    const right = polar(baseR, halfAngle);
+    const tip = polar(tipR, 0);
+    const ctrlL = polar(tipR * 0.65, -halfAngle * 1.15);
+    const ctrlR = polar(tipR * 0.65, halfAngle * 1.15);
+    return `M${left.join(",")} Q${ctrlL.join(",")} ${tip.join(",")} Q${ctrlR.join(",")} ${right.join(",")} Z`;
+  }
+
+  function lotusLayer(count, tipR, baseR, halfAngle, rotOffset, fill, stroke) {
+    const step = 360 / count;
+    const d = lotusPetal(tipR, baseR, halfAngle);
+    for (let i = 0; i < count; i++) {
+      const theta = rotOffset + i * step;
+      const g = el("g", { transform: `rotate(${theta} ${cx} ${cy})` });
+      g.appendChild(el("path", { d, fill, stroke, "stroke-width": "1" }));
+      svg.appendChild(g);
+    }
+  }
+
+  const lotusLayers = [
+    { tipR: 150, baseR: 60, halfAngle: 16, rot: 0, fill: "#7a1f1f" },
+    { tipR: 128, baseR: 50, halfAngle: 15, rot: 22.5, fill: "#c0392b" },
+    { tipR: 104, baseR: 42, halfAngle: 14, rot: 0, fill: "#e8541e" },
+    { tipR: 82, baseR: 34, halfAngle: 13, rot: 22.5, fill: "#f7a91f" },
+    { tipR: 60, baseR: 26, halfAngle: 12, rot: 0, fill: "#ffc9dd" },
+    { tipR: 38, baseR: 16, halfAngle: 11, rot: 22.5, fill: "#ffffff" },
+  ];
+  lotusLayers.forEach((s) => {
+    lotusLayer(8, s.tipR, s.baseR, s.halfAngle, s.rot, s.fill, "#5c1010");
+  });
+
+  /* ---------- Stamens + bud ---------- */
+  for (let k = 0; k < 10; k++) {
+    const [sx, sy] = polar(15, k * 36);
+    svg.appendChild(el("circle", { cx: sx, cy: sy, r: 2.4, fill: "#ffd23a" }));
+  }
+  svg.appendChild(el("circle", { cx, cy, r: 12, fill: "#e0357a" }));
+  svg.appendChild(el("circle", { cx, cy, r: 6, fill: "#9c1c4e" }));
+})();
+</script>
+</body>
+</html>
